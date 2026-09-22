@@ -13,7 +13,7 @@ const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "sw
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-manrope", display: "swap" });
 
 export const metadata: Metadata = {
-  title: "OpenLivery — AI agents for your agency",
+  title: "Mediaclouding — Agentes IA para tu empresa",
   description: "Open source platform to build and manage AI agents.",
 };
 
