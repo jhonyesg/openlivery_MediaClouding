@@ -7,8 +7,6 @@ import { Bot, Building2, CreditCard, Inbox, LayoutDashboard, LogOut, Menu, Messa
 import { api } from "@/lib/api";
 import { useT, type I18nKey } from "@/lib/i18n";
 import { LanguageSwitcher } from "@/components/language-switcher";
-import { DiscordIcon } from "@/components/discord-icon";
-import { DISCORD_INVITE_URL } from "@/lib/community";
 import type { User } from "@/types";
 
 const navigation: { href: string; labelKey: I18nKey; icon: typeof LayoutDashboard }[] = [
@@ -88,7 +86,7 @@ export function AppShell({ children }: { children: ReactNode }) {
   }
 
   if (isBare) return <>{children}</>;
-  if (loading || !user) return <div className="app-loader"><span className="openlivery-icon"><img src="/brand/openlivery-logo-original.png" alt="" /></span><span>{t("shell.loading")}</span></div>;
+  if (loading || !user) return <div className="app-loader"><span className="openlivery-icon"><img src="/brand/mediaclouding-logo.png" alt="" /></span><span>{t("shell.loading")}</span></div>;
 
   return (
     <div className="app-layout">
@@ -96,7 +94,7 @@ export function AppShell({ children }: { children: ReactNode }) {
       {mobileOpen && <div className="sidebar-overlay" onClick={() => setMobileOpen(false)} />}
       <aside className={`sidebar ${mobileOpen ? "sidebar-open" : ""}`}>
         <div className="brand-row">
-          <Link href="/" className="brand"><span className="openlivery-icon"><img src="/brand/mediaclouding-mark.svg" alt="" /></span><span>Mediaclouding</span></Link>
+          <Link href="/" className="brand"><span className="openlivery-icon"><img src="/brand/mediaclouding-logo.png" alt="" /></span><span>Mediaclouding</span></Link>
           <button className="sidebar-close" onClick={() => setMobileOpen(false)} aria-label={t("shell.closeMenu")}><X /></button>
         </div>
         <div className="sidebar-workspace"><Building2 size={14} /><span>{user.agency.name}</span></div>
@@ -113,16 +111,6 @@ export function AppShell({ children }: { children: ReactNode }) {
           })}
         </nav>
         <div className="sidebar-bottom">
-          <a
-            href={DISCORD_INVITE_URL}
-            className="sidebar-community"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => setMobileOpen(false)}
-          >
-            <DiscordIcon size={18} />
-            <span>{t("shell.joinCommunity")}</span>
-          </a>
           <div className="sidebar-foot">
             <div className="user-avatar">{user.name.slice(0, 1).toUpperCase()}</div>
             <div className="user-meta"><strong>{user.name}</strong><span>{user.email}</span></div>

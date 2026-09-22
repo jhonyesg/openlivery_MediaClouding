@@ -1,0 +1,13 @@
+services:
+  web:
+    # Low-memory override: serve the prebuilt host artifacts via bind mount
+    # instead of rebuilding inside Docker (VPS has only 3.7GB RAM, the Next.js
+    # 16 + Turbopack build OOMs the host). Rebuild on host with `npm run build`
+    # inside apps/web, then `docker compose up -d web` picks up the new files.
+    image: ${OPENLIVERY_IMAGE_PREFIX:-ghcr.io/jhonyesg/openlivery}-web:${OPENLIVERY_VERSION:-latest}
+    volumes:
+      - ./apps/web/.next/standalone:/app
+      - ./apps/web/.next/static:/app/.next/static
+      - ./apps/web/public:/app/public
+    working_dir: /app
+    command: ["node", "server.js"]
